@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import matchRoutes from "./routes/matchRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
+import { connectDB } from "./config/db.js";
 
 dotenv.config(); //that line could give us to able process.env.PORT use nontrouble
 const app = express();
@@ -20,5 +21,6 @@ app.use("/api/matches", matchRoutes);
 
 
 app.listen(port, ()=>{
-    console.log(`Server starting to the port: http://localhost:${port}`)
+    console.log(`Server starting to the port: http://localhost:${port}`);
+    connectDB();
 });
