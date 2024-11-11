@@ -1,0 +1,6 @@
+global folder ----> npm init -y
+dependency for packagejson ----> for example npm i nodemon -D
+
+let check out ---> packagejson --->> type is being module
+
+
