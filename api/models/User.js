@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema({
         }
     ],
 
-});
+},{timestamps:true});
 
 //before save user password we gone do hashed
 userSchema.pre("save", async function(next){
