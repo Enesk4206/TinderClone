@@ -8,15 +8,13 @@ const SignupForm = () => {
   const [gender , setGender] = useState("");
   const [age, setAge] = useState("");
   const [genderPreference, setGenderPreference] = useState("");
-  const loading = false
-  const signup = () =>{
-    alert("Signup")
-  };
+
+  const {signup , loading} = useAuthStore();
 
   const {authUserName , authUserLastName} = useAuthStore();
   console.log(authUserName, authUserLastName);  
   return (
-    <form className='space-y-6' onSubmit={(e)=>{e.preventDefault();signup()}}>
+    <form className='space-y-6' onSubmit={(e)=>{e.preventDefault();signup({name, email, password, gender, age, genderPreference})}}>
        <div>
         <label htmlFor="name" className='block text-sm font-medium text-gray-700'>Name</label>
         <div className='mt-1'>
