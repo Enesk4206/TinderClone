@@ -12,7 +12,16 @@ const AuthPage = () => {
         </h2>
 
         <div className='bg-white shadow-xl rounded-lg p-8'>
-          {isLogin ? <LoginForm /> : <SignupForm/>}
+          {isLogin ? <LoginForm /> : <SignupForm />}
+          <div className='mt-8 text-center'>
+            <p className='text-sm text-gray-600'>
+              {isLogin ? "New to Swipe?" : "Already have an account?"}
+            </p>
+            <button onClick={() => setIsLogin((prevIsLogin) => !prevIsLogin)} className='text-red-500 hover:text-red-800 font-medium transition-colors duration-300'> {/* it'll be set up the login and signup */}
+              {isLogin ? "Create an account" : "Sign In You Account"}
+            </button>
+          </div>
+
         </div>
       </div>
     </div>

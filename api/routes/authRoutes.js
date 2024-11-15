@@ -8,7 +8,7 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);
 
-router.get("/me", protectRoute, (res, req)=>{       //here req come from protectRoute req
+router.get("/me", protectRoute, (req, res)=>{       //here req come from protectRoute req
     res.send({
         success:true,
         user:req.user,  

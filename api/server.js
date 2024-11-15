@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./config/db.js";
+import cors from "cors";
 
 //routes 
 import authRoutes from "./routes/authRoutes.js";
@@ -17,8 +18,12 @@ const port = process.env.PORT ||5000;
 
 app.use(express.json()); // it can useable to req.body like (when user send e request information we can get to that information and process)
 app.use(cookieParser());
+app.use(cors({
+    origin : "http://localhost:5173",
+    credentials: true,
+}))
 
-app.use("/api/auth",authRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/users",userRoutes);
 app.use("/api/messages",messageRoutes);
 app.use("/api/matches", matchRoutes);
