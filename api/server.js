@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./config/db.js";
 import cors from "cors";
+import bodyParser from "body-parser"
 
 //routes 
 import authRoutes from "./routes/authRoutes.js";
@@ -21,7 +22,9 @@ app.use(cookieParser());
 app.use(cors({
     origin : "http://localhost:5173",
     credentials: true,
-}))
+}));
+app.use(bodyParser.json({limit:'20mb'}))
+app.use(bodyParser.urlencoded({limit:'20mb', extended:true}))
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users",userRoutes);

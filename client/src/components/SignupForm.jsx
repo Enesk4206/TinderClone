@@ -105,7 +105,7 @@ const SignupForm = () => {
             onChange={()=>setGender("female")}
             className='h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded' 
             />
-            <label htmlFor="female" className='ml-2 block text-sm text-gray-900'>female</label>
+            <label htmlFor="female" className='ml-2 block text-sm text-gray-900'>Female</label>
           </div>
         </div>
       </div>

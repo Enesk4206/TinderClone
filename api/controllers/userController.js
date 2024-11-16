@@ -2,9 +2,14 @@ import User from "../models/User.js";
 import cloudinary from "../config/cloudinary.js"
 export const updateProfile = async(req, res)=>{
     try {
-        const {image, ...otherData} = req.body;
+        const {age,image, ...otherData} = req.body;
         let updatedData = otherData;
-
+        if(age<18){
+            return res.status(400).json({
+                success: false,
+                message : "User age must be at least 18 "
+            });
+        }
         if(image){
             //base 64 format
             if(image.startsWith("data:image")){
@@ -19,8 +24,9 @@ export const updateProfile = async(req, res)=>{
                     })
                 }
             }
+            
         }
-        const updateUser = await User.findByIdAndUpdate(req.user.id, updateData , {new: true});
+        const updateUser = await User.findByIdAndUpdate(req.user.id, updatedData , {new: true});
         res.status(200).json({
             success:true,
             user: updateUser
