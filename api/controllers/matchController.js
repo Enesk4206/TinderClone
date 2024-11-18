@@ -64,7 +64,7 @@ export const swipeLeft = async(req,res)=>{
 
 export const getMatches = async(req,res)=>{
     try {
-        const user = await User.findById(req,user.id).populate("matches" , "name image");
+        const user = await User.findById(req.user.id).populate("matches" , "name image");
         res.status(200).json({
             success: true,
             matches : user.matches,
@@ -92,6 +92,10 @@ export const getUserProfiles = async(req ,res)=>{
                 },
                 {genderPreference : {$in: [currentUser.gender]}}
             ],
+        });
+        res.status(200).json({
+            success: true,
+            users,
         });
     } catch (error) {
         console.log("Error in getUserProfiles: ",error);
