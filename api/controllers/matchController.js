@@ -48,7 +48,7 @@ export const swipeLeft = async(req,res)=>{
             currentUser.dislikes.push(dislikedUserId);
             await currentUser.save();
         }
-        res.status(200).jso({
+        res.status(200).json({
             success: true,
             user: currentUser,
         });
