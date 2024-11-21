@@ -9,14 +9,24 @@ import { Frown } from 'lucide-react';
 
 const HomePage = () => {
 
-   const {isLoadingUserProfiles, getUserProfiles, userProfiles} = useMatchesStore();
+   const {isLoadingUserProfiles, getUserProfiles, userProfiles, subscribeToNewMatches, unsubscribeFromNewMatches} = useMatchesStore();
+   
+   const {authUser} = useAuthStore();
+   
    useEffect(()=>{
-    getUserProfiles();
+   getUserProfiles();
    },[getUserProfiles])
-   console.log("User profiles: ",userProfiles)
+
+   useEffect(() => {
+    authUser && subscribeToNewMatches();
+    // TODO remove this before deployment 
+    return () => {
+      unsubscribeFromNewMatches();
+    }      
+   },[subscribeToNewMatches, unsubscribeFromNewMatches, authUser])
   return (
     <div className='flex flex-col lg:flex-row min-h-screen bg-gradient-to-br from-pink-100 to-purple-100 overflow-hidden'>
-        <Sidebar/>
+        <Sidebar/> 
         <div className='flex-grow flex flex-col overflow-hidden'>
             <Header/>
             <main className='flex-grow flex flex-col gap-10  justify-center items-center p-4 relative overflow-hidden'>
