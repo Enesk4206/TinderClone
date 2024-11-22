@@ -11,7 +11,7 @@ export const useMessageStore = create((set)=>  ({
     sendMessage:async (receiverId, content) =>{
         try {
             set(state=> ({
-                messages: [...state.messages , {sender: useAuthStore.getState().authUser._id , content}],
+                messages: [...state.messages , {_id:Date.now(),sender: useAuthStore.getState().authUser._id , content}],
             }));
             const res =  await axiosInstance.post("/messages/send", {receiverId, content});
             console.log("message sent:", res.data)
